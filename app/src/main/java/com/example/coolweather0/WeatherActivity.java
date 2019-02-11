@@ -1,5 +1,6 @@
 package com.example.coolweather0;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -24,6 +25,7 @@ import com.bumptech.glide.load.data.StreamAssetPathFetcher;
 import com.bumptech.glide.load.resource.drawable.DrawableResource;
 import com.example.coolweather0.gson.Forecast;
 import com.example.coolweather0.gson.Weather;
+import com.example.coolweather0.service.AutoUpdateService;
 import com.example.coolweather0.util.HttpUtil;
 import com.example.coolweather0.util.Utility;
 
@@ -193,6 +195,8 @@ public class WeatherActivity extends AppCompatActivity {
         sportText.setText("运动指数："+weather.suggestion.sport.info);
 
         weatherLayout.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 
     private void initControl(){
